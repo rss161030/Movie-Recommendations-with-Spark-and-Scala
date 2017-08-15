@@ -55,8 +55,6 @@ object MovieRecommendationsALS {
     val model = ALS.train(ratings, rank, numIterations)
     
     val userID = args(0).toInt
-    
-    println("\nRatings for user ID " + userID + ":")
 
     val userRatings = ratings.filter(x => x.user == userID)
     
@@ -65,8 +63,6 @@ object MovieRecommendationsALS {
     for (rating <- myRatings) {
       println(nameDict(rating.product.toInt) + ": " + rating.rating.toString)
     }
-    
-    println("\nTop 10 recommendations:")
     
     val recommendations = model.recommendProducts(userID, 10)
     for (recommendation <- recommendations) {
